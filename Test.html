@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AnehGaming Web Portal</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #2ecc71; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>AnehGaming Bridge</h1>
+    
+    <p>
+        <a href="anehgaming://transfer?msg=DirectLinkSuccess">Click here to send "DirectLinkSuccess"</a>
+    </p>
+
+    <hr>
+
+    <p>Type something to send to the app:</p>
+    <input type="text" id="userInput" placeholder="Enter string...">
+    <button onclick="sendToApp()">Send to App</button>
+
+    <script>
+        function sendToApp() {
+            const val = document.getElementById('userInput').value;
+            if(!val) { alert("Type something first!"); return; }
+
+            // URL Encode the string to handle spaces/symbols
+            const encoded = encodeURIComponent(val);
+            const url = "anehgaming://data?msg=" + encoded;
+
+            // Trigger the app launch
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>
