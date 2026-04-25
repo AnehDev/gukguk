@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nasgor om Ari - Order Online QRIS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #121212; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #1f1f1f; }
+        ::-webkit-scrollbar-thumb { background: #ef4444; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-zinc-100 min-h-screen">
+
+    <header class="bg-zinc-900 border-b-4 border-red-600 p-8 text-center shadow-2xl">
+        <h1 class="text-4xl font-extrabold tracking-tighter italic text-red-500 uppercase">NASGOR OM ARI</h1>
+        <p class="text-xs text-zinc-400 mt-1 tracking-[0.2em]">Rasa Bintang Lima, Harga Kaki Lima</p>
+    </header>
+
+    <main class="max-w-md mx-auto p-4 pb-12">
+        <section class="mb-8">
+            <h2 class="text-sm font-bold text-red-500 mb-4 border-l-4 border-red-600 pl-2 uppercase tracking-widest text-xs">Menu Makanan</h2>
+            <div class="grid gap-3" id="food-list"></div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-sm font-bold text-blue-500 mb-4 border-l-4 border-blue-600 pl-2 uppercase tracking-widest text-xs">Menu Minuman</h2>
+            <div class="grid gap-3" id="drink-list"></div>
+        </section>
+    </main>
+
+    <footer class="bg-zinc-900 border-t border-zinc-800 p-8 pb-32 text-center mt-10">
+        <div class="max-w-md mx-auto">
+            <div class="mb-6">
+                <h3 class="text-red-500 font-black uppercase tracking-widest text-[10px] mb-3">📍 Lokasi Kami</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Jl. raya solo RT.3/RW.6, Gedongan,<br>
+                    Kec. Colomadu, Kabupaten Karanganyar,<br>
+                    Jawa Tengah
+                </p>
+            </div>
+
+            <div class="flex justify-center gap-8 mb-6">
+                <div>
+                    <h3 class="text-red-500 font-black uppercase tracking-widest text-[10px] mb-1">⏰ Jam Buka</h3>
+                    <p class="text-zinc-200 text-sm font-bold italic">17.00 - 23.00</p>
+                </div>
+                <div>
+                    <h3 class="text-red-500 font-black uppercase tracking-widest text-[10px] mb-1">🗓️ Jadwal</h3>
+                    <p class="text-zinc-200 text-sm font-bold italic">Buka Setiap Hari</p>
+                </div>
+            </div>
+
+            <a href="https://maps.app.goo.gl/sY6djL6nK1zX74XW8" target="_blank" class="inline-block bg-zinc-800 text-zinc-300 hover:text-white text-[10px] font-bold uppercase tracking-wider py-2 px-4 rounded-full border border-zinc-700 transition-all active:scale-95">
+                Buka di Google Maps
+            </a>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-40">
+        <button onclick="toggleModal()" class="bg-red-600 hover:bg-red-700 text-white p-5 rounded-2xl shadow-xl flex items-center gap-3 border-2 border-red-400 active:scale-90 transition-all">
+            <span class="text-2xl">🛒</span>
+            <span id="cart-count" class="font-bold text-lg">0</span>
+        </button>
+    </div>
+
+    <div id="modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 z-50 text-zinc-100">
+        <div class="bg-zinc-800 w-full max-w-sm rounded-[2rem] p-6 border border-zinc-700 shadow-2xl">
+            <h2 class="text-2xl font-black italic mb-4 uppercase text-center">Ringkasan Order</h2>
+            <div id="cart-items" class="space-y-3 mb-6 max-h-40 overflow-y-auto pr-2 text-sm text-zinc-400 border-b border-zinc-700 pb-4"></div>
+
+            <div class="bg-zinc-900/50 p-4 rounded-2xl border border-zinc-700 mb-4 text-center">
+                <div class="flex justify-between font-bold mb-2">
+                    <span>Total Belanja:</span>
+                    <span id="total-price" class="text-red-500">Rp 0</span>
+                </div>
+                <p class="text-[10px] text-amber-500 font-bold uppercase mb-2">Wajib DP 75% via QRIS</p>
+                <div class="flex flex-col items-center gap-2">
+                    <p class="text-lg font-black text-amber-500 tracking-wider">DP: <span id="dp-price">Rp 0</span></p>
+                    <button onclick="toggleQRISModal()" class="bg-amber-500 text-zinc-900 font-black text-[10px] py-1.5 px-3 rounded-full uppercase border border-white active:scale-95 transition">LIHAT QRIS</button>
+                </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+                <input type="text" id="buyer-name" placeholder="Nama Kamu" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl outline-none focus:border-red-600 text-zinc-100 text-sm">
+                <textarea id="buyer-note" placeholder="Catatan (Misal: Pedas / Tidak pedas)" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl outline-none focus:border-red-600 h-16 text-sm text-zinc-100"></textarea>
+            </div>
+
+            <div class="flex gap-2 font-bold">
+                <button onclick="toggleModal()" class="flex-1 bg-zinc-700 p-4 rounded-xl text-xs">BATAL</button>
+                <button onclick="checkout()" class="flex-[2] bg-green-600 text-white p-4 rounded-xl text-xs border-2 border-white shadow-lg active:scale-95 transition">PESAN VIA WA</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="qris-modal" class="hidden fixed inset-0 bg-black/95 flex flex-col items-center justify-center p-6 z-[100]" onclick="if(event.target === this) toggleQRISModal()">
+        <div class="relative bg-zinc-900 rounded-3xl p-5 max-w-[320px] w-full border border-amber-500/50 shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="toggleQRISModal()" class="absolute -top-3 -right-3 bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-black border-2 border-white shadow-md z-20">✕</button>
+            <p class="text-amber-400 font-black italic text-center text-sm uppercase tracking-wider mb-3">🔐 SCAN QRIS UNTUK DP 75%</p>
+            <div class="flex justify-center items-center bg-white p-2 rounded-2xl">
+                <img id="qris-img" src="https://i.ibb.co/97jp4kw/IMG-20260406-015345.jpg" alt="QRIS Pembayaran Nasi Goreng Om Ari" class="max-w-[260px] w-full rounded-xl border-2 border-amber-300 shadow-md">
+            </div>
+            <p class="text-zinc-500 text-[11px] text-center mt-4">Klik area luar atau tombol ✕ untuk menutup</p>
+        </div>
+    </div>
+
+    <script>
+        const foods = [
+            { name: "Nasi Goreng + Telur", price: 12000 },
+            { name: "Mie Goreng + Telur", price: 12000 },
+            { name: "Mie Rebus + Telur", price: 12000 },
+            { name: "Nasi Mawut + Telur", price: 15000 },
+            { name: "Nasi Goreng + Telur + Ayam suwir", price: 15000 },
+            { name: "Mie Goreng + Telur + Ayam suwir", price: 15000 },
+            { name: "Mie Rebus + Telur + Ayam suwir", price: 15000 },
+            { name: "Nasi Goreng + Telur  + Ati Ampela", price: 15000 },
+            { name: "Mie goreng + Telur + Ati Ampela", price: 15000 },
+            { name: "Mie Rebus + Telur + Ati Ampela", price: 15000 },
+            { name: "Kwetiaw + Telur + Ati Ampela", price: 15000 },
+            { name: "Capcay + Telur + Ati Ampela", price: 15000 },
+        ];
+
+        const drinks = [
+            { name: "Teh (Hot)", price: 3000 },
+            { name: "Jeruk (Hot)", price: 4000 },
+            { name: "Drink Beng Beng (Hot)", price: 5000 },
+            { name: "Good Day (Hot)", price: 4000 },
+            { name: "Coffe Gula Aren (Hot)", price: 5000 },
+            { name: "Teh (Ice)", price: 3000 },
+            { name: "Jeruk (Ice)", price: 4000 },
+            { name: "Drink Beng Beng (Ice)", price: 5000 },
+            { name: "Good Day (Ice)", price: 4000 },
+            { name: "Coffe Gula Aren (Ice)", price: 5000 }
+        ];
+
+        let cart = [];
+
+        function init() {
+            const fList = document.getElementById('food-list');
+            const dList = document.getElementById('drink-list');
+            foods.forEach(f => fList.innerHTML += createItemHTML(f, 'border-red-600/30'));
+            drinks.forEach(d => dList.innerHTML += createItemHTML(d, 'border-blue-600/30'));
+        }
+
+        function createItemHTML(item, borderColor) {
+            return `<div class="bg-zinc-800 p-4 rounded-2xl flex justify-between items-center border ${borderColor} shadow-sm active:bg-zinc-700 transition"><div class="text-sm font-bold text-zinc-100">${item.name}<p class="text-red-500 font-extrabold mt-1 text-xs">Rp ${item.price.toLocaleString()}</p></div><button onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})" class="bg-zinc-700 text-white px-3 py-1.5 rounded-lg text-[10px] font-black italic border border-zinc-600 hover:bg-zinc-600 transition">+ ADD</button></div>`;
+        }
+
+        function addToCart(name, price) { 
+            cart.push({ name, price }); 
+            updateCart(); 
+        }
+
+        function updateCart() {
+            const totalSpan = document.getElementById('total-price');
+            const dpSpan = document.getElementById('dp-price');
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            let dpRounded = Math.ceil((total * 0.75) / 1000) * 1000;
+            document.getElementById('cart-count').innerText = cart.length;
+            totalSpan.innerText = `Rp ${total.toLocaleString()}`;
+            dpSpan.innerText = `Rp ${dpRounded.toLocaleString()}`;
+            const cartItemsDiv = document.getElementById('cart-items');
+            if(cart.length === 0) {
+                cartItemsDiv.innerHTML = `<div class="text-center text-zinc-500 text-xs italic">Keranjang kosong</div>`;
+            } else {
+                cartItemsDiv.innerHTML = cart.map(item => `<div class="flex justify-between border-b border-zinc-700/50 pb-1"><span class="text-zinc-300">${item.name}</span><span class="text-red-400 font-mono">Rp ${item.price.toLocaleString()}</span></div>`).join('');
+            }
+        }
+
+        function toggleModal() { 
+            document.getElementById('modal').classList.toggle('hidden'); 
+        }
+        
+        function toggleQRISModal() {
+            const qrisModal = document.getElementById('qris-modal');
+            if(qrisModal) qrisModal.classList.toggle('hidden');
+        }
+        
+        function checkout() {
+            const name = document.getElementById('buyer-name').value.trim();
+            const note = document.getElementById('buyer-note').value.trim() || "-";
+            if (!name) return alert("Isi nama kamu dulu!");
+            if (cart.length === 0) return alert("Belum ada pesanan, tambahkan menu dulu!");
+            
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            let dp = Math.ceil((total * 0.75) / 1000) * 1000;
+            let itemsText = "";
+            cart.forEach((item, idx) => { itemsText += `${idx + 1}. ${item.name} (1 porsi)%0A`; });
+            
+            let msg = `*𝙃𝙖𝙡𝙤 𝙊𝙢 𝘼𝙧𝙞! 𝙎𝙖𝙮𝙖 𝙢𝙖𝙪 𝙥𝙚𝙨𝙖𝙣 :*%0A`;
+            msg += `⊡════════════════════⊡%0A`;
+            msg += `Nama : ${name}%0A`;
+            msg += `📋 *Pesanan:*%0A${itemsText}%0A`;
+            msg += `\`Total : Rp ${total.toLocaleString()}\` %0A`;
+            msg += `*💸 DP 75% (bulat): Rp ${dp.toLocaleString()}*%0A%0A`;
+            msg += `📝 *Catatan:* ${note}%0A`;
+            msg += `⊡════════════════════⊡%0A`;
+            msg += `_NB: Saya sudah melakukan pembayaran DP via QRIS. Mohon dicek._`;
+            
+            window.open(`https://wa.me/6285925985652?text=${msg}`, '_blank');
+        }
+        
+        init();
+        updateCart();
+        
+        window.addToCart = addToCart;
+        window.toggleModal = toggleModal;
+        window.toggleQRISModal = toggleQRISModal;
+        window.checkout = checkout;
+    </script>
+</body>
+</html>
