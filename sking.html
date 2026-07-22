@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>KEROxI DEVELOPER</title>
+<!-- AdMob -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-2961123892437779" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#07080f;--bg2:#0d0f1a;--card:#11141f;--card2:#161926;
+  --border:#1e2236;--border2:#252a40;
+  --gold:#f5c518;--gold2:#e6b800;
+  --blue:#4fc3f7;--blue2:#0288d1;
+  --orange:#ff6b35;--orange2:#e55a25;
+  --purple:#7c4dff;--purple2:#651fff;
+  --green:#00e676;
+  --text:#eef2ff;--muted:#6b7a99;--dim:#9aa3bf;
+  --banner-h:60px;
+}
+html,body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* ── ANIMATED BG ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 20%,rgba(76,195,247,.07),transparent),
+    radial-gradient(ellipse 50% 50% at 80% 80%,rgba(124,77,255,.07),transparent),
+    radial-gradient(ellipse 40% 30% at 50% 50%,rgba(255,107,53,.04),transparent);
+  pointer-events:none;z-index:0;animation:bgpulse 8s ease-in-out infinite alternate;
+}
+@keyframes bgpulse{0%{opacity:.6}100%{opacity:1}}
+
+/* ── MARQUEE ── */
+.mq{background:linear-gradient(90deg,#ff6b35,#7c4dff,#4fc3f7,#ff6b35);background-size:300% 100%;animation:mqs 4s linear infinite;padding:5px 0;overflow:hidden;position:relative;z-index:10;}
+@keyframes mqs{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.mq-inner{display:flex;white-space:nowrap;animation:mq 30s linear infinite;}
+.mq-inner span{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:#fff;padding:0 20px;letter-spacing:2px;}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── HEADER ── */
+.hdr{position:relative;z-index:10;padding:14px 16px 8px;}
+.hdr-inner{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:10px 14px;}
+.logo-wrap{position:relative;flex-shrink:0;}
+.logo-img,.logo-ph{width:52px;height:52px;border-radius:14px;object-fit:cover;}
+.logo-ph{background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;font-size:22px;}
+.logo-ring{position:absolute;inset:-3px;border-radius:17px;border:2px solid transparent;background:linear-gradient(135deg,var(--gold),var(--orange),var(--purple)) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;}
+.hdr-txt{flex:1;}
+.hdr-txt h1{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.hdr-txt p{font-size:10px;color:var(--muted);letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.hdr-badges{display:flex;flex-direction:column;gap:4px;align-items:flex-end;}
+.badge-vip{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-size:9px;font-weight:900;padding:3px 10px;border-radius:20px;letter-spacing:1px;}
+.badge-ver{font-family:'Rajdhani',sans-serif;font-size:10px;color:var(--muted);letter-spacing:1px;}
+
+/* ── SOCIAL ── */
+.soc-wrap{padding:8px 16px;position:relative;z-index:10;}
+.soc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.soc-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;border-radius:14px;text-decoration:none;transition:transform .2s;position:relative;overflow:hidden;}
+.soc-btn::before{content:'';position:absolute;inset:0;border-radius:14px;opacity:.08;transition:opacity .2s;}
+.soc-btn:active{transform:scale(.9);}
+.soc-btn:active::before{opacity:.2;}
+.soc-ico{font-size:22px;line-height:1;}
+.soc-lbl{font-size:10px;font-weight:800;letter-spacing:.5px;}
+.s-yt{color:#ff4040;border:1px solid rgba(255,64,64,.3);}  .s-yt::before{background:#ff4040;}
+.s-ig{color:#e1306c;border:1px solid rgba(225,48,108,.3);}  .s-ig::before{background:#e1306c;}
+.s-wa{color:#25d366;border:1px solid rgba(37,211,102,.3);}  .s-wa::before{background:#25d366;}
+.s-tg{color:#29a8e0;border:1px solid rgba(41,168,224,.3);}  .s-tg::before{background:#29a8e0;}
+
+/* ── SECTION LABEL ── */
+.slbl{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;color:var(--dim);padding:10px 16px 6px;position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;}
+.slbl-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);margin-left:10px;}
+
+/* ── CATEGORY LIST ── */
+.cat-list{display:flex;flex-direction:column;gap:10px;padding:0 16px 12px;position:relative;z-index:10;}
+.cat-item{border-radius:18px;overflow:hidden;cursor:pointer;display:flex;align-items:center;min-height:86px;transition:transform .2s;position:relative;border:1px solid var(--border2);}
+.cat-item:active{transform:scale(.97);}
+.cat-item::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(0,0,0,.5));pointer-events:none;}
+.cat-img{width:92px;height:86px;object-fit:cover;flex-shrink:0;}
+.cat-ph{width:92px;height:86px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:38px;}
+.cat-body{flex:1;padding:10px 12px;position:relative;z-index:1;}
+.cat-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;margin-bottom:2px;}
+.cat-desc{font-size:11px;color:rgba(255,255,255,.6);line-height:1.4;}
+.cat-arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);z-index:1;font-size:20px;color:rgba(255,255,255,.5);}
+/* Cat colors */
+.c-bun{background:linear-gradient(135deg,#1a0533,#2d1460);}  .c-bun .cat-name{color:#c084fc;}  .c-bun .cat-ph{background:linear-gradient(135deg,#2d1460,#4c1d95);}
+.c-emo{background:linear-gradient(135deg,#1a0520,#4a0a3a);}  .c-emo .cat-name{color:#f472b6;}  .c-emo .cat-ph{background:linear-gradient(135deg,#4a0a3a,#831843);}
+.c-dia{background:linear-gradient(135deg,#001a2e,#003a5c);}  .c-dia .cat-name{color:#38bdf8;}  .c-dia .cat-ph{background:linear-gradient(135deg,#003a5c,#075985);}
+.c-wep{background:linear-gradient(135deg,#1a0800,#3d1500);}  .c-wep .cat-name{color:#fb923c;}  .c-wep .cat-ph{background:linear-gradient(135deg,#3d1500,#7c2d12);}
+.c-map{background:linear-gradient(135deg,#001a05,#003810);}  .c-map .cat-name{color:#4ade80;}  .c-map .cat-ph{background:linear-gradient(135deg,#003810,#14532d);}
+
+/* ── SCREEN SYSTEM ── */
+.screen{display:none;min-height:100vh;padding-bottom:calc(var(--banner-h) + 10px);}
+.screen.active{display:block;}
+.scr-hdr{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(7,8,15,.95);backdrop-filter:blur(16px);z-index:50;}
+.back-btn{background:var(--card);border:1px solid var(--border2);color:var(--blue);padding:9px 16px;border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;}
+.back-btn:active{background:var(--blue);color:#000;}
+.scr-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;}
+.scr-title span{background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ── VERSION SELECT ── */
+.ver-wrap{padding:16px;display:flex;flex-direction:column;gap:12px;}
+.ver-card{border-radius:20px;padding:20px 16px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:transform .2s;position:relative;overflow:hidden;}
+.ver-card:active{transform:scale(.97);}
+.vff{background:linear-gradient(135deg,#001833,#003366);}
+.vfm{background:linear-gradient(135deg,#1a0800,#4a1500);}
+.ver-ico{font-size:46px;}
+.ver-info h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;margin-bottom:3px;}
+.ver-info p{font-size:12px;color:rgba(255,255,255,.6);}
+.ver-badge{margin-left:auto;font-size:11px;font-weight:800;padding:6px 14px;border-radius:20px;white-space:nowrap;}
+.b-ff{background:rgba(76,195,247,.2);color:#4fc3f7;border:1px solid rgba(76,195,247,.4);}
+.b-fm{background:var(--orange);color:#fff;}
+
+/* ── ASSETS GRID ── */
+.ag{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:12px 16px;}
+.ac{border-radius:20px;overflow:hidden;cursor:pointer;position:relative;transition:transform .2s;aspect-ratio:.72;border:1px solid var(--border2);}
+.ac:active{transform:scale(.94);}
+.ac-bg{position:absolute;inset:0;}
+.ac-bg img{width:100%;height:100%;object-fit:cover;}
+.ac-bg-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.ac-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,transparent 50%);pointer-events:none;}
+.ac-lbl{position:absolute;bottom:0;left:0;right:0;padding:32px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,.92));}
+.ac-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:#fff;}
+.ac-ver{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;}
+.ac-new{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,var(--gold),var(--orange));color:#000;font-size:9px;font-weight:900;padding:3px 8px;border-radius:8px;}
+
+/* ── DETAIL ── */
+.det-wrap{padding:14px 16px;}
+.det-hero{border-radius:20px;overflow:hidden;margin-bottom:14px;background:var(--card);border:1px solid var(--border2);}
+.det-compare{display:grid;grid-template-columns:1fr 44px 1fr;gap:8px;align-items:center;padding:14px;}
+.det-img-box{border-radius:14px;overflow:hidden;aspect-ratio:1;background:var(--bg2);position:relative;}
+.det-img-box img{width:100%;height:100%;object-fit:cover;}
+.det-img-lbl{text-align:center;font-size:10px;font-weight:800;color:var(--muted);margin-top:6px;letter-spacing:1px;text-transform:uppercase;}
+.det-arrow-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.det-arrow{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 16px rgba(255,107,53,.4);}
+.det-arrow-lbl{font-size:9px;color:var(--muted);letter-spacing:1px;}
+.det-info{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px;}
+.det-names{display:grid;grid-template-columns:1fr 1px 1fr;background:var(--bg2);border-radius:12px;padding:12px;}
+.dn{text-align:center;}
+.dn h4{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:var(--text);margin-bottom:2px;}
+.dn p{font-size:10px;color:var(--muted);}
+.dn-div{background:var(--border2);}
+.det-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;border:1px solid var(--border2);color:var(--muted);background:var(--card);}
+.chip.hl{border-color:var(--gold);color:var(--gold);}
+
+/* ── DOWNLOAD BTN ── */
+.dl-btn-wrap{padding:0 16px 16px;}
+.dl-btn{width:100%;padding:18px;border-radius:16px;border:none;background:linear-gradient(135deg,var(--orange),var(--gold));color:#000;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;cursor:pointer;transition:transform .2s;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:900;box-shadow:0 8px 24px rgba(255,107,53,.4);}
+.dl-btn:active{transform:scale(.97);}
+.dl-btn:disabled{opacity:.45;cursor:not-allowed;}
+.dl-note{text-align:center;font-size:10px;color:var(--muted);margin-top:8px;}
+
+/* ── VIDEO AD OVERLAY ── */
+#adOverlay{display:none;position:fixed;inset:0;z-index:9990;background:#000;flex-direction:column;align-items:center;justify-content:center;}
+#adOverlay.show{display:flex;}
+.ad-skip-bar{position:absolute;top:0;left:0;right:0;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;}
+.ad-skip-lbl{font-family:'Rajdhani',sans-serif;font-size:12px;color:rgba(255,255,255,.6);letter-spacing:1px;}
+.ad-skip-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;display:none;}
+.ad-skip-btn.show{display:block;}
+.ad-video-mock{width:100%;max-width:400px;padding:0 20px;text-align:center;}
+.ad-brand{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,.4);margin-bottom:20px;}
+.ad-icon-big{font-size:80px;margin-bottom:16px;animation:adpulse 1s ease-in-out infinite alternate;}
+@keyframes adpulse{0%{transform:scale(1)}100%{transform:scale(1.05)}}
+.ad-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;margin-bottom:8px;}
+.ad-desc{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:24px;}
+.ad-prog-wrap{width:100%;}
+.ad-prog-lbl{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;}
+.ad-prog{width:100%;height:4px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
+.ad-prog-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--gold));width:0;transition:width .1s linear;}
+.ad-rewarded-lbl{margin-top:12px;font-size:11px;color:rgba(255,255,255,.4);font-family:'Rajdhani',sans-serif;letter-spacing:1px;}
+
+/* ── BANNER AD ── */
+.banner-ad-wrap{position:fixed;bottom:0;left:0;right:0;height:var(--banner-h);z-index:200;background:var(--bg2);border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:center;}
+
+/* ── LOADING/EMPTY ── */
+.spinner{width:38px;height:38px;border:3px solid var(--border2);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:50px auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;padding:50px 20px;}
+.empty-ico{font-size:52px;margin-bottom:12px;}
+.empty h3{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--muted);}
+.empty p{font-size:12px;color:var(--muted);margin-top:6px;}
+.rel{position:relative;z-index:10;}
+</style>
+</head>
+<body>
+
+<!-- VIDEO AD OVERLAY -->
+<div id="adOverlay">
+  <div class="ad-skip-bar">
+    <div class="ad-skip-lbl">AD</div>
+    <button class="ad-skip-btn" id="adSkipBtn" onclick="skipAd()">Skip Ad ▶</button>
+  </div>
+  <div class="ad-video-mock">
+    <div class="ad-brand">// SPONSORED</div>
+    <div class="ad-icon-big">⚡</div>
+    <div class="ad-title">KEROxI VIP</div>
+    <div class="ad-desc">Get exclusive VIP skins for Free Fire & FF MAX</div>
+    <div class="ad-prog-wrap">
+      <div class="ad-prog-lbl">
+        <span>Reward Video</span>
+        <span id="adTimerLbl">0:30</span>
+      </div>
+      <div class="ad-prog"><div class="ad-prog-fill" id="adProgFill"></div></div>
+    </div>
+    <div class="ad-rewarded-lbl">⬇ Downloading in background...</div>
+  </div>
+</div>
+
+<!-- BANNER AD -->
+<div class="banner-ad-wrap">
+  <ins class="adsbygoogle"
+    style="display:inline-block;width:320px;height:50px"
+    data-ad-client="ca-app-pub-2961123892437779"
+    data-ad-slot="5075629673"></ins>
+</div>
+
+<!-- ══ HOME ══ -->
+<div class="screen active" id="sHome">
+  <div class="mq rel"><div class="mq-inner"><span id="mq1">⚡ KEROxI DEVELOPER — VIP SKIN MANAGER ⚡ FREE FIRE &amp; FF MAX ⚡ EXCLUSIVE VIP SKINS ⚡ BUNDLES ⚡ EMOTES ⚡ WEAPONS ⚡</span><span id="mq2">⚡ KEROxI DEVELOPER — VIP SKIN MANAGER ⚡ FREE FIRE &amp; FF MAX ⚡ EXCLUSIVE VIP SKINS ⚡ BUNDLES ⚡ EMOTES ⚡ WEAPONS ⚡</span></div></div>
+  <div class="hdr">
+    <div class="hdr-inner">
+      <div class="logo-wrap">
+        <div id="logoBox"><div class="logo-ph">🎮</div></div>
+        <div class="logo-ring"></div>
+      </div>
+      <div class="hdr-txt"><h1>KEROxI</h1><p>Developer • VIP Manager</p></div>
+      <div class="hdr-badges"><div class="badge-vip">VIP</div><div class="badge-ver">v2.0</div></div>
+    </div>
+  </div>
+  <div class="soc-wrap rel">
+    <div class="soc-grid">
+      <a class="soc-btn s-yt" id="bYt" href="#" target="_blank"><span class="soc-ico">▶</span><span class="soc-lbl">YouTube</span></a>
+      <a class="soc-btn s-ig" id="bIg" href="#" target="_blank"><span class="soc-ico">📸</span><span class="soc-lbl">Instagram</span></a>
+      <a class="soc-btn s-wa" id="bWa" href="#" target="_blank"><span class="soc-ico">💬</span><span class="soc-lbl">WhatsApp</span></a>
+      <a class="soc-btn s-tg" id="bTg" href="#" target="_blank"><span class="soc-ico">✈</span><span class="soc-lbl">Telegram</span></a>
+    </div>
+  </div>
+  <div class="slbl rel">SELECT CATEGORY<div class="slbl-line"></div></div>
+  <div class="cat-list rel">
+    <div class="cat-item c-bun" onclick="pickCat('bundles')"><div class="cat-ph" id="ci_bundles">👗</div><div class="cat-body"><div class="cat-name">BUNDLES</div><div class="cat-desc">Exclusive character bundles & outfits</div></div><div class="cat-arrow">›</div></div>
+    <div class="cat-item c-emo" onclick="pickCat('emotes')"><div class="cat-ph" id="ci_emotes">💃</div><div class="cat-body"><div class="cat-name">EMOTES</div><div class="cat-desc">Animated emotes & reactions</div></div><div class="cat-arrow">›</div></div>
+    <div class="cat-item c-dia" onclick="pickCat('diamond')"><div class="cat-ph" id="ci_diamond">💎</div><div class="cat-body"><div class="cat-name">DIAMOND TIPS</div><div class="cat-desc">Top diamond earning tips & tricks</div></div><div class="cat-arrow">›</div></div>
+    <div class="cat-item c-wep" onclick="pickCat('weapons')"><div class="cat-ph" id="ci_weapons">🔫</div><div class="cat-body"><div class="cat-name">WEAPONS</div><div class="cat-desc">VIP weapon skins & collections</div></div><div class="cat-arrow">›</div></div>
+    <div class="cat-item c-map" onclick="pickCat('maps')"><div class="cat-ph" id="ci_maps">🗺️</div><div class="cat-body"><div class="cat-name">MAPS</div><div class="cat-desc">Custom map configs & themes</div></div><div class="cat-arrow">›</div></div>
+  </div>
+</div>
+
+<!-- ══ VERSION ══ -->
+<div class="screen" id="sVersion">
+  <div class="scr-hdr"><button class="back-btn" onclick="show('sHome')">‹ BACK</button><div class="scr-title">SELECT <span id="vCatLbl">GAME</span></div></div>
+  <div class="ver-wrap">
+    <div class="ver-card vff" onclick="pickVer('ff')"><div class="ver-ico">🔥</div><div class="ver-info"><h3 style="color:#4fc3f7">FREE FIRE</h3><p>Normal Quality • Standard Assets</p></div><div class="ver-badge b-ff">NORMAL</div></div>
+    <div class="ver-card vfm" onclick="pickVer('ffmax')"><div class="ver-ico">💎</div><div class="ver-info"><h3 style="color:#fb923c">FF MAX</h3><p>Ultra HD Quality • Premium Assets</p></div><div class="ver-badge b-fm">ULTRA HD</div></div>
+  </div>
+</div>
+
+<!-- ══ ASSETS ══ -->
+<div class="screen" id="sAssets">
+  <div class="scr-hdr"><button class="back-btn" onclick="show('sVersion')">‹ BACK</button><div class="scr-title" id="aTitle">ASSETS</div></div>
+  <div id="aCont"></div>
+</div>
+
+<!-- ══ DETAIL ══ -->
+<div class="screen" id="sDetail">
+  <div class="scr-hdr"><button class="back-btn" onclick="show('sAssets')">‹ BACK</button><div class="scr-title" id="dTitle">DETAIL</div></div>
+  <div id="dCont"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+firebase.initializeApp({apiKey:"AIzaSyD-v3ogv58k1R4EOFu4lICPGuD6E650eeA",projectId:"gen-lang-client-0416916763",databaseURL:"https://gen-lang-client-0416916763-default-rtdb.firebaseio.com",storageBucket:"gen-lang-client-0416916763.appspot.com"});
+const db=firebase.database();
+let curCat='',curVer='',curItem=null,adTimer=null,adSeconds=30;
+const CN={bundles:'BUNDLES',emotes:'EMOTES',diamond:'DIAMOND TIPS',weapons:'WEAPONS',maps:'MAPS'};
+const GRADS=['linear-gradient(160deg,#0d0221,#1a0533)','linear-gradient(160deg,#001833,#003366)','linear-gradient(160deg,#1a0800,#4a1500)','linear-gradient(160deg,#001a05,#003810)','linear-gradient(160deg,#1a0520,#4a0a3a)','linear-gradient(160deg,#0d1a00,#1a3300)','linear-gradient(160deg,#000d1a,#001a33)','linear-gradient(160deg,#1a1500,#332900)'];
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+
+async function loadSettings(){
+  try{
+    const snap=await db.ref('settings').once('value');const s=snap.val()||{};
+    if(s.logoUrl){document.getElementById('logoBox').innerHTML=`<img class="logo-img" src="${s.logoUrl}" onerror="this.outerHTML='<div class=logo-ph>🎮</div>'">`;}
+    if(s.bannerText){document.getElementById('mq1').textContent=s.bannerText;document.getElementById('mq2').textContent=s.bannerText;}
+    if(s.youtube)document.getElementById('bYt').href=s.youtube;
+    if(s.instagram)document.getElementById('bIg').href=s.instagram;
+    if(s.whatsapp)document.getElementById('bWa').href=s.whatsapp;
+    if(s.telegram)document.getElementById('bTg').href=s.telegram;
+    ['bundles','emotes','diamond','weapons','maps'].forEach(c=>{
+      const url=s['cat_'+c];if(!url)return;
+      const el=document.getElementById('ci_'+c);if(!el)return;
+      el.outerHTML=`<img class="cat-img" id="ci_${c}" src="${url}" onerror="this.style.display='none'">`;
+    });
+  }catch(e){console.warn(e);}
+}
+
+function pickCat(cat){curCat=cat;document.getElementById('vCatLbl').textContent=CN[cat]||cat.toUpperCase();show('sVersion');}
+
+async function pickVer(ver){
+  curVer=ver;
+  document.getElementById('aTitle').innerHTML=CN[curCat]+' <span>// '+(ver==='ff'?'FREE FIRE':'FF MAX')+'</span>';
+  show('sAssets');await loadAssets();
+}
+
+async function loadAssets(){
+  const cont=document.getElementById('aCont');
+  cont.innerHTML='<div class="spinner"></div>';
+  try{
+    const snap=await db.ref('assets/'+curCat+'/'+curVer).once('value');
+    const data=snap.val();
+    if(!data){cont.innerHTML='<div class="empty"><div class="empty-ico">📦</div><h3>NO ASSETS YET</h3><p>Admin se update ka wait karo</p></div>';return;}
+    const items=Object.entries(data).map(([k,v])=>({id:k,...v}));
+    let html='<div class="ag">';
+    items.forEach((item,i)=>{
+      const bg=GRADS[i%GRADS.length];
+      const hasImg=item.targetImg&&item.targetImg.trim()!=='';
+      const enc=encodeURIComponent(JSON.stringify(item));
+      html+=`<div class="ac" style="background:${bg}" onclick="openDetail('${enc}')">
+        <div class="ac-bg">${hasImg?`<img src="${item.targetImg}" onerror="this.style.display='none'">`:`<div class="ac-bg-ph">🎮</div>`}</div>
+        <div class="ac-shine"></div>
+        <div class="ac-new">NEW</div>
+        <div class="ac-lbl"><div class="ac-name">${item.targetName||'Unknown'}</div><div class="ac-ver">${curVer==='ff'?'🔥 FF':'💎 FF MAX'}</div></div>
+      </div>`;
+    });
+    html+='</div>';cont.innerHTML=html;
+  }catch(e){cont.innerHTML='<div class="empty"><div class="empty-ico">⚠️</div><h3>LOAD ERROR</h3><p>'+e.message+'</p></div>';}
+}
+
+function openDetail(enc){
+  const item=JSON.parse(decodeURIComponent(enc));curItem=item;
+  document.getElementById('dTitle').innerHTML=(item.targetName||'ITEM')+' <span>// DETAIL</span>';
+  const tImg=item.targetImg&&item.targetImg.trim()?`<img src="${item.targetImg}" style="width:100%;height:100%;object-fit:cover;">`:`<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:52px;background:var(--bg2)">🎮</div>`;
+  const rImg=item.resultImg&&item.resultImg.trim()?`<img src="${item.resultImg}" style="width:100%;height:100%;object-fit:cover;">`:`<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:52px;background:var(--bg2)">💎</div>`;
+  document.getElementById('dCont').innerHTML=`
+    <div class="det-wrap">
+      <div class="det-hero">
+        <div class="det-compare">
+          <div><div class="det-img-box">${tImg}</div><div class="det-img-lbl">ORIGINAL</div></div>
+          <div class="det-arrow-wrap"><div class="det-arrow">→</div><div class="det-arrow-lbl">VIP</div></div>
+          <div><div class="det-img-box">${rImg}</div><div class="det-img-lbl">VIP RESULT</div></div>
+        </div>
+        <div class="det-info">
+          <div class="det-names">
+            <div class="dn"><h4>${item.targetName||'—'}</h4><p>TARGET</p></div>
+            <div class="dn-div"></div>
+            <div class="dn"><h4>${item.resultName||'—'}</h4><p>VIP SKIN</p></div>
+          </div>
+          <div class="det-chips">
+            <div class="chip hl">${CN[curCat]||curCat}</div>
+            <div class="chip">${curVer==='ff'?'🔥 FREE FIRE':'💎 FF MAX'}</div>
+            <div class="chip">⚙ CONFIG</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dl-btn-wrap">
+      <button class="dl-btn" id="dlBtn" onclick="startDl()">⚡ DOWNLOAD VIP CONFIG</button>
+      <div class="dl-note">// Ye file sirf local visual assets modify karta hai. No server changes.</div>
+    </div>`;
+  show('sDetail');
+}
+
+// ── VIDEO AD + DOWNLOAD ──────────────────────────────────────────
+function startDl(){
+  if(!curItem||!curItem.fileUrl||curItem.fileUrl.trim()===''){alert('Download URL available nahi hai.');return;}
+  const btn=document.getElementById('dlBtn');
+  btn.disabled=true;btn.innerHTML='⏳ Loading Ad...';
+  // Start background download immediately
+  triggerDownload(curItem.fileUrl,curItem.fileName||'config');
+  // Show video ad
+  showVideoAd();
+}
+
+function showVideoAd(){
+  const ov=document.getElementById('adOverlay');
+  ov.classList.add('show');
+  adSeconds=30;
+  document.getElementById('adTimerLbl').textContent='0:30';
+  document.getElementById('adProgFill').style.width='0%';
+  document.getElementById('adSkipBtn').classList.remove('show');
+  // Countdown
+  let elapsed=0;
+  adTimer=setInterval(()=>{
+    elapsed++;adSeconds--;
+    const pct=(elapsed/30)*100;
+    document.getElementById('adProgFill').style.width=pct+'%';
+    const s=adSeconds<0?0:adSeconds;
+    document.getElementById('adTimerLbl').textContent='0:'+(s<10?'0':'')+s;
+    if(elapsed>=5) document.getElementById('adSkipBtn').classList.add('show');
+    if(elapsed>=30) skipAd();
+  },1000);
+}
+
+function skipAd(){
+  clearInterval(adTimer);
+  document.getElementById('adOverlay').classList.remove('show');
+  const btn=document.getElementById('dlBtn');
+  if(btn){btn.disabled=false;btn.innerHTML='⚡ DOWNLOAD VIP CONFIG';}
+}
+
+function triggerDownload(url,name){
+  try{
+    const a=document.createElement('a');a.href=url;a.download=name;a.target='_blank';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+  }catch(e){window.open(url,'_blank');}
+}
+
+// Init banner ad
+window.addEventListener('load',()=>{
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+});
+
+loadSettings();
+</script>
+</body>
+</html>
